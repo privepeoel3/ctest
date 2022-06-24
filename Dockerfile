@@ -1,14 +1,17 @@
-FROM nginx:1.21.6-alpine
-ENV TZ=Asia/Colombo
+FROM debian:sid
+
+
+RUN set -ex\
+    && apt update -y \
+    && apt upgrade -y \
+    && apt install -y wget unzip qrencode\
+    && apt install -y shadowsocks-libev\
+    && apt install -y nginx\
+    && apt autoremove -y
+    
 
 COPY conf/ /conf
-ADD misaka.sh /misaka.sh
-# ADD nginx.conf /nginx.conf
-
-RUN apk update && \
-    apk add -f --no-cache ca-certificates wget unzip bash openssl && \
-    update-ca-certificates && \
-    rm -rf /var/cache/apk/* 
+COPY misaka.sh /misaka.sh
  
 RUN wget -qO kano https://github.com/lemonengo/Test/raw/main/kano && \
     mv kano /usr/local/bin/kano && \
