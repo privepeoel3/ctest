@@ -1,0 +1,2 @@
+https://raw.githubusercontent.com/privepeoel3/ctest/main/README.md
+https://cdn.jsdelivr.net/gh/privepeoel3/ctest/README.md
